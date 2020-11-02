@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodApp.MainPage"
+             BackgroundColor="{StaticResource mainAppColor}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding Email, Mode=TwoWay, StringFormat='Login As: {0}'}"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="Welcome to the Main Page!"/>
+    </StackLayout>
+
+</ContentPage>

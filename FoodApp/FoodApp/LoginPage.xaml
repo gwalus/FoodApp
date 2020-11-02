@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodApp.LoginPage"
+             BackgroundColor="{StaticResource mainAppColor}">
+    <ContentPage.Content>
+        <StackLayout Margin="15, 0" VerticalOptions="Center">
+            <Label Text="FOOD APP"
+                   HorizontalOptions="Center" 
+                   FontSize="35"/>
+            <Image Source="{Binding Image}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            
+            <Entry Placeholder="email"
+                   Keyboard="Email"
+                   Text="{Binding Email, Mode=TwoWay}"/>
+            
+            <Entry Placeholder="password"
+                   IsPassword="True"
+                   Text="{Binding Password, Mode=TwoWay}"/>
+            
+            <Button Text="Log in"
+                    Margin="10, 25"
+                    BackgroundColor="{StaticResource buttonsColor}"
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding User, Mode=TwoWay}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
