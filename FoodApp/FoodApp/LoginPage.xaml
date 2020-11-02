@@ -9,15 +9,15 @@
                    HorizontalOptions="Center" 
                    FontSize="35"/>
             <Image Source="{Binding Image}" VerticalOptions="Center" HorizontalOptions="Center"/>
-            
+
             <Entry Placeholder="email"
                    Keyboard="Email"
                    Text="{Binding Email, Mode=TwoWay}"/>
-            
+
             <Entry Placeholder="password"
                    IsPassword="True"
                    Text="{Binding Password, Mode=TwoWay}"/>
-            
+
             <Button Text="Log in"
                     Margin="10, 25"
                     BackgroundColor="{StaticResource buttonsColor}"

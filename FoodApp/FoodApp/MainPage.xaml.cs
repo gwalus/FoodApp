@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace FoodApp
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : TabbedPage
     {
         MainVM _viewModel;
 
@@ -19,6 +20,8 @@ namespace FoodApp
 
             _viewModel = new MainVM();
             BindingContext = _viewModel;
+
+            
         }
     }
 }
