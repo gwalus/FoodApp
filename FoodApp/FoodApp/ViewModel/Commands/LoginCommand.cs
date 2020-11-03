@@ -15,16 +15,18 @@ namespace FoodApp.ViewModel
 
         public bool CanExecute(object parameter)
         {
-            if (parameter != null)
-            {
-                User user = (User)parameter;
+            //if (parameter != null)
+            //{
+            //    User user = (User)parameter;
 
-                if (string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password))
-                    return false;
-                else
-                    return true;
-            }
-            return false;
+            //    if (string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password))
+            //        return false;
+            //    else
+            //        return true;
+            //}
+            //return false;
+
+            return true;
         }
 
         public void Execute(object parameter)

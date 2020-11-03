@@ -29,6 +29,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Don't you have an account yet?"
@@ -42,6 +43,8 @@
                         HeightRequest="35"
                         FontSize="12"
                         Command="{Binding GoToRegisterPageCommand}"/>
+
+                <Button Grid.Row="2" x:Name="TestButton" Clicked="TestButton_Clicked" Text="Test" Style="{StaticResource ButtonOfTypeCancel}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

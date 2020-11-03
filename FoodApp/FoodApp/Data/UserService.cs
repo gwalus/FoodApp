@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace FoodApp.Data
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly FoodAppContext _dbContext;
 
@@ -17,25 +18,49 @@ namespace FoodApp.Data
             _dbContext = new FoodAppContext();
         }
 
-        public async Task<bool> CanLogin(User user)
+        public Task<bool> CanLogin(User user)
         {
-            var usr = await _dbContext.Users.SingleOrDefaultAsync(x => x.Email == user.Email);
-
-            if (usr != null)
-            {
-                if (usr.Password == user.Password)
-                    return true;
-                return false;
-            }
-            else if (user.Email == "admin" && user.Password == "admin")
-                return true; // do testowania
-            return false;            
+            throw new NotImplementedException();
         }
 
-        public async void Register(User user)
+        //public async Task<bool> CanLogin(User user)
+        //{
+        //    //var usr = await _dbContext.Users.SingleOrDefaultAsync(x => x.Email == user.Email);
+
+        //    //if (usr != null)
+        //    //{
+        //    //    if (usr.Password == user.Password)
+        //    //        return true;
+        //    //    return false;
+        //    //}
+        //    //else if (user.Email == "admin" && user.Password == "admin")
+        //    //    return true; // do testowania
+        //    //return false;  
+
+        //    throw NotImplementedException;
+        //}
+
+        public async void Register(User user, string password)
         {
-            if (user != null)
-                await _dbContext.AddAsync(user);
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            await _dbContext.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+
+            //return user;
+        }
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            }
         }
     }
 }

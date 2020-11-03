@@ -1,13 +1,11 @@
-﻿using FoodApp.Models;
-using System;
+﻿using FoodApp.Dtos;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace FoodApp
 {
     public partial class App : Application
     {
-        public static User User { get; set; }
+        public static UserForRegisterDto UserForRegisterDto { get; set; }
 
         public App()
         {
@@ -15,7 +13,7 @@ namespace FoodApp
 
             MainPage = new NavigationPage(new LoginPage());
 
-            User = new User();
+            UserForRegisterDto = new UserForRegisterDto();
         }
 
         protected override void OnStart()

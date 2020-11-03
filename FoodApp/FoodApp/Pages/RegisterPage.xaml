@@ -25,14 +25,13 @@
 
             <Entry Placeholder="confirm password"
                    IsPassword="True"
-                />
-                   <!--Text="{Binding ConfirmPassword, Mode=TwoWay}"/>-->
+                   Text="{Binding PasswordConfirm, Mode=TwoWay}"/>
 
             <Button Text="Register"
                     Margin="10, 25, 10, 5"
-                    Style="{StaticResource ButtonOfTypeAccept}"/>
-            <!--Command="{Binding RegisterCommand}"
-                    CommandParameter="{Binding User, Mode=TwoWay}"/>-->
+                    Style="{StaticResource ButtonOfTypeAccept}"
+                    Command="{Binding UserRegisterCommand}"
+                    CommandParameter="{Binding User, Mode=TwoWay}"/>
 
             <Button Text="Cancel"
                     Margin="100, 0"

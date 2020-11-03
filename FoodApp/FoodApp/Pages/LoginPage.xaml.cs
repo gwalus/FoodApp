@@ -1,10 +1,7 @@
-﻿using FoodApp.ViewModel;
+﻿using FoodApp.Data;
+using FoodApp.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,6 +18,19 @@ namespace FoodApp
 
             viewModel = new LoginVM();
             BindingContext = viewModel;
+        }
+
+        private async void TestButton_Clicked(object sender, EventArgs e)
+        {
+            using (var context = new FoodAppContext())
+            {
+                var test = await context.Users.SingleOrDefaultAsync(x => x.Id == 1);
+
+                await DisplayAlert("Test", $"{test.Id}", "Ok");
+                await DisplayAlert("Test", $"{test.Email}", "Ok");
+                await DisplayAlert("Test", $"{test.PasswordHash}", "Ok");
+                await DisplayAlert("Test", $"{test.PasswordSalt}", "Ok");
+            }
         }
     }
 }

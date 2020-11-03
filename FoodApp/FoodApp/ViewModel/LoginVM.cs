@@ -24,7 +24,7 @@ namespace FoodApp.ViewModel
                 User = new User()
                 {
                     Email = Email,
-                    Password = Password
+                    //Password = Password
                 };
             }
         }
@@ -41,7 +41,7 @@ namespace FoodApp.ViewModel
                 User = new User()
                 {
                     Email = Email,
-                    Password = Password
+                    //Password = Password
                 };
             }
         }
@@ -65,19 +65,19 @@ namespace FoodApp.ViewModel
         {
             if (await _userService.CanLogin(User))
             {
-                App.User = User;
+                //App.User = User;
                 await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
             else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
             {
-                App.User = User;
+                //App.User = User;
                 await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
             }
         }
 
         public async void GoToRegisterPage()
         {
-            App.User = null;
+            App.UserForRegisterDto = null;
             await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
     }

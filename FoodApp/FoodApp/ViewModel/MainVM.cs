@@ -12,7 +12,7 @@ namespace FoodApp.ViewModel
         public string Email
         {
             get { return email; }
-            set { email = App.User.Email; }
+            set { email = App.UserForRegisterDto.Email; }
         }
 
         public MainVM()
