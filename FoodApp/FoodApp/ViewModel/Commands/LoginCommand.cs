@@ -1,4 +1,5 @@
-﻿using FoodApp.Models;
+﻿using FoodApp.Dtos;
+using FoodApp.Models;
 using System;
 using System.Windows.Input;
 
@@ -15,18 +16,16 @@ namespace FoodApp.ViewModel
 
         public bool CanExecute(object parameter)
         {
-            //if (parameter != null)
-            //{
-            //    User user = (User)parameter;
+            if (parameter != null)
+            {
+                var user = (UserForLoginDto)parameter;
 
-            //    if (string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password))
-            //        return false;
-            //    else
-            //        return true;
-            //}
-            //return false;
-
-            return true;
+                if (string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password))
+                    return false;
+                else
+                    return true;
+            }
+            return false;
         }
 
         public void Execute(object parameter)

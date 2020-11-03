@@ -1,4 +1,5 @@
 ﻿using FoodApp.Data;
+using FoodApp.Dtos;
 using FoodApp.Models;
 using FoodApp.Pages;
 using FoodApp.ViewModel.Commands;
@@ -9,7 +10,7 @@ namespace FoodApp.ViewModel
 {
     public class LoginVM : INotifyPropertyChanged
     {
-        public User User { get; set; }
+        public UserForLoginDto User { get; set; }
         public ImageSource Image { get; set; }
         private readonly UserService _userService;
 
@@ -21,10 +22,10 @@ namespace FoodApp.ViewModel
             set
             {
                 email = value;
-                User = new User()
+                User = new UserForLoginDto()
                 {
                     Email = Email,
-                    //Password = Password
+                    Password = Password
                 };
             }
         }
@@ -38,10 +39,10 @@ namespace FoodApp.ViewModel
             set
             {
                 password = value;
-                User = new User()
+                User = new UserForLoginDto()
                 {
                     Email = Email,
-                    //Password = Password
+                    Password = Password
                 };
             }
         }
@@ -55,7 +56,7 @@ namespace FoodApp.ViewModel
             LoginCommand = new LoginCommand(this);
             GoToRegisterPageCommand = new GoToRegisterPageCommand(this);
             Image = ImageSource.FromResource("FoodApp.Assets.Icons.icon_food.png");
-            User = new User();
+            User = new UserForLoginDto();
             _userService = new UserService();
         }
 
@@ -63,21 +64,26 @@ namespace FoodApp.ViewModel
 
         public async void Login()
         {
-            if (await _userService.CanLogin(User))
-            {
-                //App.User = User;
-                await App.Current.MainPage.Navigation.PushAsync(new MainPage());
-            }
-            else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
-            {
-                //App.User = User;
+            //if (await _userService.CanLogin(User))
+            //{
+            //    //App.User = User;
+            //    await App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            //}
+
+            App.UserForLoginDto = User;
+            if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
                 await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
-            }
+
+            //else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
+            //{
+            //    //App.User = User;
+            //    await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+            //}
         }
 
         public async void GoToRegisterPage()
         {
-            App.UserForRegisterDto = null;
+            App.UserForLoginDto = null;
             await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
     }

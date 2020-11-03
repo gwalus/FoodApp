@@ -22,14 +22,17 @@ namespace FoodApp.ViewModel
             set 
             {
                 email = value;
-                //if (App.UserForRegisterDto != null)                
-                //    Email = App.UserForRegisterDto.Email;
-                User = new UserForRegisterDto()
+                if (App.UserForLoginDto != null)
+                    Email = App.UserForLoginDto.Email;                 
+                else
                 {
-                    Email = Email,
-                    Password = Password,
-                    PasswordConfirm = PasswordConfirm
-                };
+                    User = new UserForRegisterDto()
+                    {
+                        Email = Email,
+                        Password = Password,
+                        PasswordConfirm = PasswordConfirm
+                    };
+                }
             }
         }
 
@@ -41,14 +44,17 @@ namespace FoodApp.ViewModel
             set 
             {
                 password = value;
-                //if (App.UserForRegisterDto != null)
-                //    Password = App.UserForRegisterDto.Password;
-                User = new UserForRegisterDto()
+                if (App.UserForLoginDto != null)
+                    Password = App.UserForLoginDto.Password;
+                else
                 {
-                    Email = Email,
-                    Password = Password,
-                    PasswordConfirm = PasswordConfirm
-                };
+                    User = new UserForRegisterDto()
+                    {
+                        Email = Email,
+                        Password = Password,
+                        PasswordConfirm = PasswordConfirm
+                    };
+                }
             }
         }
 
@@ -91,7 +97,7 @@ namespace FoodApp.ViewModel
             UserService = new UserService();
         }
 
-        public void Register(UserForRegisterDto userForRegisterDto)
+        public async void Register(UserForRegisterDto userForRegisterDto)
         {
             userForRegisterDto.Email.ToLower();
 
@@ -101,22 +107,21 @@ namespace FoodApp.ViewModel
 
             var mapper = new Mapper(config);
             var userToCreate = mapper.Map<User>(userForRegisterDto);
-
-            //var userToCreate = _mapper.Map<User>(userForRegisterDto);
-
             // mapowanie na User'a z właściwościami passwordHash i passwordSalt
 
-            //var createdUser = 
-            UserService.Register(userToCreate, userForRegisterDto.Password);
-            // tworzymy nowego użytkownika z podanym hasłem w formularzu
+            if (await UserService.Register(userToCreate, userForRegisterDto.Password)) // tworzymy nowego użytkownika z podanym hasłem w formularzu
+            {
+                //config = new MapperConfiguration(cfg => cfg.CreateMap<User, UserForLoginDto>());
+                //mapper = new Mapper(config);
+                //var userToReturn = mapper.Map<UserForLoginDto>(userToCreate);
 
-            //var config2 = new MapperConfiguration(cfg => cfg.CreateMap<UserReturnedDto, User>());
-            //var mapper2 = new Mapper(config2);
+                //App.UserForLoginDto = userToReturn;
 
-            //var userToReturn = mapper2.Map<UserReturnedDto>(createdUser);
-            //// zwracamy użytkownika tylko z emailem, bez hasła
-
-            //return userToReturn;
+                await App.Current.MainPage.DisplayAlert("Success", "User has been created successfully!", "Log in");
+                await App.Current.MainPage.Navigation.PushAsync(new LoginPage());
+            }
+            else
+                await App.Current.MainPage.DisplayAlert("Failed", "Something went wrong", "Let's try again");
         }
 
         public async void GoToLoginPage()

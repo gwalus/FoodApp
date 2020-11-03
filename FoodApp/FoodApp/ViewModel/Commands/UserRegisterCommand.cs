@@ -16,17 +16,19 @@ namespace FoodApp.ViewModel.Commands
 
         public bool CanExecute(object parameter)
         {
-            //var user = (UserForRegisterDto)parameter;
+            if (parameter != null)
+            {
+                var user = (UserForRegisterDto)parameter;
 
-            //if (!(string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password) || string.IsNullOrWhiteSpace(user.PasswordConfirm)))
-            //{
-            //    if (user.Password == user.PasswordConfirm)
-            //        return true;
-            //    return false;
-            //}
-            //return false;
-
-            return true;
+                if (!(string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password) || string.IsNullOrWhiteSpace(user.PasswordConfirm)))
+                {
+                    if (user.Password == user.PasswordConfirm)
+                        return true;
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
 
         public void Execute(object parameter)

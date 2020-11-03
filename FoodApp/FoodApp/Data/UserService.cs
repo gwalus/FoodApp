@@ -40,7 +40,7 @@ namespace FoodApp.Data
         //    throw NotImplementedException;
         //}
 
-        public async void Register(User user, string password)
+        public async Task<bool> Register(User user, string password)
         {
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
@@ -48,10 +48,17 @@ namespace FoodApp.Data
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            await _dbContext.AddAsync(user);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.AddAsync(user);
+                await _dbContext.SaveChangesAsync();
 
-            //return user;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

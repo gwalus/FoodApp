@@ -10,6 +10,6 @@ namespace FoodApp.Data
     public interface IUserService
     {
         Task<bool> CanLogin(User user);
-        void Register(User user, string password);
+        Task<bool> Register(User user, string password);
     }
 }

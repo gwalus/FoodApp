@@ -5,7 +5,7 @@ namespace FoodApp
 {
     public partial class App : Application
     {
-        public static UserForRegisterDto UserForRegisterDto { get; set; }
+        public static UserForLoginDto UserForLoginDto { get; set; }
 
         public App()
         {
@@ -13,7 +13,7 @@ namespace FoodApp
 
             MainPage = new NavigationPage(new LoginPage());
 
-            UserForRegisterDto = new UserForRegisterDto();
+            UserForLoginDto = new UserForLoginDto();
         }
 
         protected override void OnStart()
