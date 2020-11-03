@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodApp.LoginPage"
-             BackgroundColor="{StaticResource mainAppColor}">
+             BackgroundColor="{StaticResource mainAppColor}"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout Margin="15, 0" VerticalOptions="Center">
             <Label Text="FOOD APP"
@@ -20,9 +21,28 @@
 
             <Button Text="Log in"
                     Margin="10, 25"
-                    BackgroundColor="{StaticResource buttonsColor}"
+                    Style="{StaticResource ButtonOfTypeAccept}"
                     Command="{Binding LoginCommand}"
                     CommandParameter="{Binding User, Mode=TwoWay}"/>
+
+            <Grid Margin="10, 0" VerticalOptions="End">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Don't you have an account yet?"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       FontAttributes="Italic"
+                       FontSize="14"/>
+                <Button Text="Register now"
+                        Grid.Column="1"
+                        Style="{StaticResource ButtonOfTypeAccept}"
+                        HeightRequest="35"
+                        FontSize="12"
+                        Command="{Binding GoToRegisterPageCommand}"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

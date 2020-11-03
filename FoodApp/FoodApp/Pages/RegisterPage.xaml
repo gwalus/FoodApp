@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodApp.Pages.RegisterPage"
+             BackgroundColor="{StaticResource mainAppColor}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Margin="15, 0" VerticalOptions="Center">
+            <Label Text="Creating new account"
+                   HorizontalOptions="Center" 
+                   FontSize="30"/>
+            <Image Source="{Binding Image}" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   HeightRequest="100"
+                   WidthRequest="100"/>
+
+            <Entry Placeholder="email"
+                   Keyboard="Email"
+                   Text="{Binding Email, StringFormat='{0}', Mode=TwoWay}"/>
+
+            <Entry Placeholder="password"
+                   IsPassword="True"
+                   Text="{Binding Password, StringFormat='{0}', Mode=TwoWay}"/>
+
+            <Entry Placeholder="confirm password"
+                   IsPassword="True"
+                />
+                   <!--Text="{Binding ConfirmPassword, Mode=TwoWay}"/>-->
+
+            <Button Text="Register"
+                    Margin="10, 25, 10, 5"
+                    Style="{StaticResource ButtonOfTypeAccept}"/>
+            <!--Command="{Binding RegisterCommand}"
+                    CommandParameter="{Binding User, Mode=TwoWay}"/>-->
+
+            <Button Text="Cancel"
+                    Margin="100, 0"
+                    Style="{StaticResource ButtonOfTypeCancel}"
+                    Command="{Binding CancelRegisterCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,5 +1,7 @@
 ﻿using FoodApp.Data;
 using FoodApp.Models;
+using FoodApp.Pages;
+using FoodApp.ViewModel.Commands;
 using System.ComponentModel;
 using Xamarin.Forms;
 
@@ -9,7 +11,7 @@ namespace FoodApp.ViewModel
     {
         public User User { get; set; }
         public ImageSource Image { get; set; }
-        UserService _userService;
+        private readonly UserService _userService;
 
         private string email;
 
@@ -46,10 +48,12 @@ namespace FoodApp.ViewModel
 
 
         public LoginCommand LoginCommand { get; set; }
+        public GoToRegisterPageCommand GoToRegisterPageCommand { get; set; }
 
         public LoginVM()
         {
             LoginCommand = new LoginCommand(this);
+            GoToRegisterPageCommand = new GoToRegisterPageCommand(this);
             Image = ImageSource.FromResource("FoodApp.Assets.Icons.icon_food.png");
             User = new User();
             _userService = new UserService();
@@ -64,8 +68,17 @@ namespace FoodApp.ViewModel
                 App.User = User;
                 await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
-            else
-                await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Let's try again");
+            else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
+            {
+                App.User = User;
+                await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+            }
+        }
+
+        public async void GoToRegisterPage()
+        {
+            App.User = null;
+            await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
     }
 }

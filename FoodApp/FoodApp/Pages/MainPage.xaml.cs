@@ -20,8 +20,6 @@ namespace FoodApp
 
             _viewModel = new MainVM();
             BindingContext = _viewModel;
-
-            
         }
     }
 }

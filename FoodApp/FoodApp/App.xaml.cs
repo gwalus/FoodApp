@@ -14,6 +14,7 @@ namespace FoodApp
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginPage());
+
             User = new User();
         }
 
