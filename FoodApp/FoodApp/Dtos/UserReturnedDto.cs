@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FoodApp.Dtos
+﻿namespace FoodApp.Dtos
 {
     public class UserReturnedDto
     {

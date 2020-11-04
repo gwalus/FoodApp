@@ -1,15 +1,14 @@
 ﻿using FoodApp.Dtos;
-using FoodApp.Models;
 using System;
 using System.Windows.Input;
 
 namespace FoodApp.ViewModel
 {
-    public class LoginCommand : ICommand
+    public class UserLoginCommand : ICommand
     {
         private LoginVM _viewModel;
 
-        public LoginCommand(LoginVM viewModel)
+        public UserLoginCommand(LoginVM viewModel)
         {
             _viewModel = viewModel;
         }
@@ -33,6 +32,8 @@ namespace FoodApp.ViewModel
             _viewModel.Login();
         }
 
+#pragma warning disable 67
         public event EventHandler CanExecuteChanged;
+#pragma warning restore 67
     }
 }

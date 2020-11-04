@@ -22,7 +22,7 @@
             <Button Text="Log in"
                     Margin="10, 25"
                     Style="{StaticResource ButtonOfTypeAccept}"
-                    Command="{Binding LoginCommand}"
+                    Command="{Binding UserLoginCommand}"
                     CommandParameter="{Binding User, Mode=TwoWay}"/>
 
             <Grid Margin="10, 0" VerticalOptions="End">

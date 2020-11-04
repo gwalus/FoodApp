@@ -1,7 +1,4 @@
-﻿using FoodApp.Data;
-using FoodApp.ViewModel;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using FoodApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

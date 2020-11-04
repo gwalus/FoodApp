@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace FoodApp.ViewModel
 {
@@ -20,6 +17,8 @@ namespace FoodApp.ViewModel
 
         }
 
+#pragma warning disable 67
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore 67
     }
 }

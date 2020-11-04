@@ -1,6 +1,5 @@
 ﻿using FoodApp.Data;
 using FoodApp.Dtos;
-using FoodApp.Models;
 using FoodApp.Pages;
 using FoodApp.ViewModel.Commands;
 using System.ComponentModel;
@@ -48,37 +47,34 @@ namespace FoodApp.ViewModel
         }
 
 
-        public LoginCommand LoginCommand { get; set; }
+        public UserLoginCommand UserLoginCommand { get; set; }
         public GoToRegisterPageCommand GoToRegisterPageCommand { get; set; }
 
         public LoginVM()
         {
-            LoginCommand = new LoginCommand(this);
+            UserLoginCommand = new UserLoginCommand(this);
             GoToRegisterPageCommand = new GoToRegisterPageCommand(this);
             Image = ImageSource.FromResource("FoodApp.Assets.Icons.icon_food.png");
             User = new UserForLoginDto();
             _userService = new UserService();
         }
 
+#pragma warning disable 67
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore 67
 
         public async void Login()
         {
-            //if (await _userService.CanLogin(User))
-            //{
-            //    //App.User = User;
-            //    await App.Current.MainPage.Navigation.PushAsync(new MainPage());
-            //}
+            var user = await _userService.Login(Email.ToLower(), Password);
 
-            App.UserForLoginDto = User;
-            if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
+            if (user != null)
+            {
+                App.UserForLoginDto = User;
+                await App.Current.MainPage.DisplayAlert("Welcome in Food App", "Logged in successfully", "Ok");
+                await App.Current.MainPage.Navigation.PushAsync(new MainPage());
+            }
+            else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
                 await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
-
-            //else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
-            //{
-            //    //App.User = User;
-            //    await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
-            //}
         }
 
         public async void GoToRegisterPage()

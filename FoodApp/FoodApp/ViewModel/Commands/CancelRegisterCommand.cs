@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace FoodApp.ViewModel.Commands
@@ -14,8 +12,6 @@ namespace FoodApp.ViewModel.Commands
             _viewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public bool CanExecute(object parameter)
         {
             return true;
@@ -25,5 +21,9 @@ namespace FoodApp.ViewModel.Commands
         {
             _viewModel.GoToLoginPage();
         }
+
+#pragma warning disable 67
+        public event EventHandler CanExecuteChanged;
+#pragma warning restore 67
     }
 }

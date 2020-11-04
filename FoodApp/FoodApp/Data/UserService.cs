@@ -1,9 +1,7 @@
 ﻿using FoodApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
@@ -18,27 +16,32 @@ namespace FoodApp.Data
             _dbContext = new FoodAppContext();
         }
 
-        public Task<bool> CanLogin(User user)
+        public async Task<User> Login(string email, string password)
         {
-            throw new NotImplementedException();
+            var user = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
+
+            if (user is null)
+                return null;
+
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+
+            return user;
         }
 
-        //public async Task<bool> CanLogin(User user)
-        //{
-        //    //var usr = await _dbContext.Users.SingleOrDefaultAsync(x => x.Email == user.Email);
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 
-        //    //if (usr != null)
-        //    //{
-        //    //    if (usr.Password == user.Password)
-        //    //        return true;
-        //    //    return false;
-        //    //}
-        //    //else if (user.Email == "admin" && user.Password == "admin")
-        //    //    return true; // do testowania
-        //    //return false;  
-
-        //    throw NotImplementedException;
-        //}
+                for (int i = 0; i < computedHash.Length; i++)
+                {
+                    if (computedHash[i] != passwordHash[i]) return false;
+                }
+            }
+            return true;
+        }
 
         public async Task<bool> Register(User user, string password)
         {
@@ -59,6 +62,14 @@ namespace FoodApp.Data
             {
                 return false;
             }
+        }
+
+        public async Task<bool> UserExists(string email)
+        {
+            if(await _dbContext.Users.AnyAsync(u => u.Email == email))
+                return true;
+            else
+                return false;
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

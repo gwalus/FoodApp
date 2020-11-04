@@ -1,7 +1,5 @@
 ﻿using FoodApp.Dtos;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace FoodApp.ViewModel.Commands
@@ -38,6 +36,8 @@ namespace FoodApp.ViewModel.Commands
             _viewModel.Register(userToCreate);
         }
 
+#pragma warning disable 67
         public event EventHandler CanExecuteChanged;
+#pragma warning restore 67
     }
 }
