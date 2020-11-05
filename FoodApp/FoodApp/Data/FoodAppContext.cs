@@ -8,6 +8,7 @@ namespace FoodApp.Data
     public class FoodAppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         public FoodAppContext()
         {

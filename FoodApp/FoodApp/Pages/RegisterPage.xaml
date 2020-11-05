@@ -4,11 +4,11 @@
              x:Class="FoodApp.Pages.RegisterPage"
              BackgroundColor="{StaticResource mainAppColor}"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content>
+    <Frame Margin="20" CornerRadius="50">
         <StackLayout Margin="15, 0" VerticalOptions="Center">
             <Label Text="Creating new account"
                    HorizontalOptions="Center" 
-                   FontSize="30"/>
+                   FontSize="25"/>
             <Image Source="{Binding Image}" 
                    VerticalOptions="Center" 
                    HorizontalOptions="Center"
@@ -34,9 +34,9 @@
                     CommandParameter="{Binding User, Mode=TwoWay}"/>
 
             <Button Text="Cancel"
-                    Margin="100, 0"
+                    Margin="80, 0"
                     Style="{StaticResource ButtonOfTypeCancel}"
                     Command="{Binding CancelRegisterCommand}"/>
         </StackLayout>
-    </ContentPage.Content>
+    </Frame>
 </ContentPage>

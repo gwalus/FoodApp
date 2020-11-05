@@ -46,6 +46,15 @@ namespace FoodApp.ViewModel
             }
         }
 
+        private bool loading;
+
+        public bool Loading
+        {
+            get { return loading; }
+            set { loading = value; }
+        }
+
+
 
         public UserLoginCommand UserLoginCommand { get; set; }
         public GoToRegisterPageCommand GoToRegisterPageCommand { get; set; }
@@ -65,21 +74,27 @@ namespace FoodApp.ViewModel
 
         public async void Login()
         {
+            Loading = true;
+
             var user = await _userService.Login(Email.ToLower(), Password);
 
             if (user != null)
             {
-                App.UserForLoginDto = User;
+                App.CurrentUser = User;
+                Loading = false;
                 await App.Current.MainPage.DisplayAlert("Welcome in Food App", "Logged in successfully", "Ok");
                 await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
             else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
+            {
+                App.CurrentUser = User;
                 await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+            }
         }
 
         public async void GoToRegisterPage()
         {
-            App.UserForLoginDto = null;
+            App.CurrentUser = null;
             await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
     }

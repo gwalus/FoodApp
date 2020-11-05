@@ -20,17 +20,17 @@ namespace FoodApp.ViewModel
             set 
             {
                 email = value;
-                if (App.UserForLoginDto != null)
-                    Email = App.UserForLoginDto.Email;                 
-                else
-                {
+                //if (App.UserForLoginDto != null)
+                //    Email = App.UserForLoginDto.Email;                 
+                //else
+                //{
                     User = new UserForRegisterDto()
                     {
                         Email = Email,
                         Password = Password,
                         PasswordConfirm = PasswordConfirm
                     };
-                }
+                //}
             }
         }
 
@@ -42,17 +42,17 @@ namespace FoodApp.ViewModel
             set 
             {
                 password = value;
-                if (App.UserForLoginDto != null)
-                    Password = App.UserForLoginDto.Password;
-                else
-                {
+                //if (App.UserForLoginDto != null)
+                //    Password = App.UserForLoginDto.Password;
+                //else
+                //{
                     User = new UserForRegisterDto()
                     {
                         Email = Email,
                         Password = Password,
                         PasswordConfirm = PasswordConfirm
                     };
-                }
+                //}
             }
         }
 

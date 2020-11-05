@@ -1,4 +1,6 @@
-﻿namespace FoodApp.Models
+﻿using System.Collections.Generic;
+
+namespace FoodApp.Models
 {
     public class User
     {
@@ -7,5 +9,6 @@
 
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

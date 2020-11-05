@@ -4,13 +4,16 @@
              x:Class="FoodApp.MainPage"
             xmlns:pages="clr-namespace:FoodApp.Pages"
              BackgroundColor="{StaticResource mainAppColor}"
-            SelectedTabColor="Black">
+            SelectedTabColor="Black"
+            NavigationPage.HasBackButton="False"
+            BarBackgroundColor="{StaticResource mainAppColor}">
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="{Binding Email, Mode=TwoWay, StringFormat='Login As: {0}'}"/>
+        <!--<ToolbarItem Text="{Binding Email, Mode=TwoWay, StringFormat='Login As: {0}'}"/>-->
+        <ToolbarItem Text="Test" Command="{Binding TestingCommand}"/>
     </TabbedPage.ToolbarItems>
 
     <pages:HistoryPage Title="History"/>
-    <pages:NewMealPage Title="Meals"/>
+    <pages:NewPostPage Title="Posts"/>
     <pages:ProfilePage Title="Profile"/>
 
 </TabbedPage>

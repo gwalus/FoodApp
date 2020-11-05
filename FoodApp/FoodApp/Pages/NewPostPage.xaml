@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodApp.Pages.NewPostPage"
+             BackgroundColor="{StaticResource mainAppColor}">
+    <Frame Margin="20" CornerRadius="15">
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Label Text="Adding new post"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="18"
+                   Margin="0, 0, 0, 20"/>
+                <Picker ItemsSource="{Binding MealType}"
+                        SelectedItem="{Binding MealTypeSelected, Mode=OneWayToSource}"
+                    Title="Meal type:"/>
+
+                <Entry Text="{Binding MealName, Mode=OneWayToSource}"
+                   Placeholder="Meal name"/>
+
+                <Picker ItemsSource="{Binding Count}"
+                        SelectedItem="{Binding CountSelected, Mode=OneWayToSource}"
+                    Title="Count"/>
+
+                <Entry Text="{Binding Weight, Mode=OneWayToSource}"
+                   Placeholder="Weight"/>
+
+                <Picker ItemsSource="{Binding Scale}"
+                        SelectedItem="{Binding ScaleSelected, Mode=OneWayToSource}"
+                    Title="Scale (1-5)"/>
+
+                <Button Text="Add"
+                    Style="{StaticResource ButtonOfTypeAccept}"
+                        Command="{Binding AddNewPostCommand}"
+                        CommandParameter="{Binding Post}"/>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+</ContentPage>

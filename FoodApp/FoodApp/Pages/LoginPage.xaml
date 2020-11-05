@@ -4,12 +4,15 @@
              x:Class="FoodApp.LoginPage"
              BackgroundColor="{StaticResource mainAppColor}"
              NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content>
+    <Frame Margin="20" CornerRadius="50">
         <StackLayout Margin="15, 0" VerticalOptions="Center">
+            <!--<ActivityIndicator Color="Pink" IsRunning="{Binding Loading, Mode=TwoWay}"/>-->
             <Label Text="FOOD APP"
                    HorizontalOptions="Center" 
                    FontSize="35"/>
-            <Image Source="{Binding Image}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Image Source="{Binding Image}" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"/>
 
             <Entry Placeholder="email"
                    Keyboard="Email"
@@ -45,5 +48,5 @@
                         Command="{Binding GoToRegisterPageCommand}"/>
             </Grid>
         </StackLayout>
-    </ContentPage.Content>
+    </Frame>
 </ContentPage>

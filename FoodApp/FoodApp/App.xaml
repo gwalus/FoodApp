@@ -6,17 +6,22 @@
         <ResourceDictionary>
             <Color x:Key="mainAppColor">#75a3a3</Color>
             <Color x:Key="buttonsColor">#527a7a</Color>
+            <Color x:Key="NavigationBarColor">#3d5c5c</Color>
+
+            <Style TargetType="{x:Type NavigationPage}">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationBarColor}"/>
+            </Style>
 
             <Style TargetType="Button" x:Key="ButtonOfTypeAccept">
                 <Setter Property="BackgroundColor" Value="{StaticResource buttonsColor}"/>
-                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="BorderColor" Value="Black"/>
                 <Setter Property="BorderWidth" Value="1"/>
             </Style>
 
             <Style TargetType="Button" x:Key="ButtonOfTypeCancel">
                 <Setter Property="BackgroundColor" Value="{StaticResource mainAppColor}"/>
-                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="BorderColor" Value="{StaticResource buttonsColor}"/>
                 <Setter Property="BorderWidth" Value="3"/>
             </Style>
