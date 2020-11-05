@@ -1,5 +1,4 @@
-﻿using FoodApp.Data;
-using FoodApp.ViewModel;
+﻿using FoodApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +14,13 @@ namespace FoodApp.Pages
             InitializeComponent();
             _viewModel = new HistoryPageVM();
             BindingContext = _viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            _viewModel.LoadPosts();
         }
     }
 }

@@ -8,6 +8,6 @@ namespace FoodApp.Data
         Task<User> Login(string email, string password);
         Task<bool> Register(User user, string password);
         Task<bool> UserExists(string email);
-        Task<User> GetUser(string email);
+        Task<User> GetUser(int id);
     }
 }

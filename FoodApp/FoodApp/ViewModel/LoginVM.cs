@@ -1,5 +1,7 @@
-﻿using FoodApp.Data;
+﻿using AutoMapper;
+using FoodApp.Data;
 using FoodApp.Dtos;
+using FoodApp.Models;
 using FoodApp.Pages;
 using FoodApp.ViewModel.Commands;
 using System.ComponentModel;
@@ -74,20 +76,23 @@ namespace FoodApp.ViewModel
 
         public async void Login()
         {
-            Loading = true;
-
             var user = await _userService.Login(Email.ToLower(), Password);
 
             if (user != null)
             {
-                App.CurrentUser = User;
-                Loading = false;
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UserReturnedDto>());
+
+                var mapper = new Mapper(config);
+                var userLogin = mapper.Map<UserReturnedDto>(user);
+
+                App.CurrentUser = userLogin;
+
                 await App.Current.MainPage.DisplayAlert("Welcome in Food App", "Logged in successfully", "Ok");
                 await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
             else if (await App.Current.MainPage.DisplayAlert("Error", "Your email or password doesn't correctly!", "Create an account", "Let's try again"))
             {
-                App.CurrentUser = User;
+                App.CurrentUser = null;
                 await App.Current.MainPage.Navigation.PushAsync(new RegisterPage());
             }
         }

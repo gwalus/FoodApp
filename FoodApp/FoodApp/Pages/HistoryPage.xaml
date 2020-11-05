@@ -4,10 +4,36 @@
              x:Class="FoodApp.Pages.HistoryPage">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Posts}">
+            <ListView ItemsSource="{Binding Posts}" 
+                      VerticalOptions="FillAndExpand" 
+                      HasUnevenRows="True" 
+                      SeparatorColor="{StaticResource NavigationBarColor}"
+                      Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding MealType}"/>
+                        <ViewCell>
+                            <Expander State="Collapsed">
+                                <Expander.Header>
+                                    <Label Text="{Binding MealType}"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="25"
+                                           FontAttributes="Bold"/>
+                                </Expander.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Text="{Binding MealName, StringFormat='Mealname: {0}'}"/>
+                                    <Label Grid.Row="1" Text="{Binding Count, StringFormat='Count: {0}'}"/>
+                                    <Label Grid.Row="2" Text="{Binding Weight, StringFormat='Weight: {0:F2}'}"/>
+                                    <Label Grid.Row="3" Text="{Binding Scale, StringFormat='Scale: {0}'}"/>
+                                </Grid>
+                            </Expander>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

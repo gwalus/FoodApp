@@ -7,6 +7,6 @@ namespace FoodApp.Data
     interface IDataRepository
     {
         Task<bool> AddPost(Post post);
-        ICollection<Post> GetPosts(string email);
+        Task<ICollection<Post>> GetPosts(int id);
     }
 }

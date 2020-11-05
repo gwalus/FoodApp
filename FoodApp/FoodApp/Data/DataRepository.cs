@@ -1,4 +1,5 @@
 ﻿using FoodApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace FoodApp.Data
 
         public async Task<bool> AddPost(Post post)
         {
-            var user = await _userService.GetUser(App.CurrentUser.Email);
+            var user = await _userService.GetUser(App.CurrentUser.Id);
             post.UserId = user.Id;
 
             try
@@ -35,12 +36,9 @@ namespace FoodApp.Data
 
         }
 
-        public ICollection<Post> GetPosts(string email)
-        {
-            
-            var user = _userService.GetUser(email);
-            
-            return  _dbContext.Posts.Where(u => u.UserId == user.Id).ToList();
+        public async Task<ICollection<Post>> GetPosts(int id)
+        {   
+            return await _dbContext.Posts.Where(u => u.UserId == id).ToListAsync();
         }
     }
 }

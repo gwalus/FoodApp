@@ -23,7 +23,8 @@
                     Title="Count"/>
 
                 <Entry Text="{Binding Weight, Mode=OneWayToSource}"
-                   Placeholder="Weight"/>
+                   Keyboard="Numeric"
+                       Placeholder="Weight (g)"/>
 
                 <Picker ItemsSource="{Binding Scale}"
                         SelectedItem="{Binding ScaleSelected, Mode=OneWayToSource}"

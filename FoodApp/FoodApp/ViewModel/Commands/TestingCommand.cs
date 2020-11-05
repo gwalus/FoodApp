@@ -11,8 +11,6 @@ namespace FoodApp.ViewModel.Commands
             _viewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public bool CanExecute(object parameter)
         {
             return true;
@@ -22,5 +20,8 @@ namespace FoodApp.ViewModel.Commands
         {
             _viewModel.Testing();
         }
+#pragma warning disable 67
+        public event EventHandler CanExecuteChanged;
+#pragma warning restore 67
     }
 }

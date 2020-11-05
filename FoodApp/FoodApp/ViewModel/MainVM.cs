@@ -1,5 +1,6 @@
 ﻿using FoodApp.Data;
 using FoodApp.ViewModel.Commands;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel;
 
@@ -7,6 +8,8 @@ namespace FoodApp.ViewModel
 {
     public class MainVM : INotifyPropertyChanged
     {
+        FoodAppContext _dbContext;
+
         private string email;
 
         public string Email
@@ -22,6 +25,7 @@ namespace FoodApp.ViewModel
         {
             TestingCommand = new TestingCommand(this);
             _repo = new DataRepository();
+            _dbContext = new FoodAppContext();
         }
 
 #pragma warning disable 67
@@ -30,7 +34,7 @@ namespace FoodApp.ViewModel
 
         public void Testing()
         {
-            //_repo.GetPosts();
+            //var posts = await _dbContext.Posts.ToListAsync();
         }
     }
 }

@@ -81,9 +81,9 @@ namespace FoodApp.Data
             }
         }
 
-        public async Task<User> GetUser(string email)
+        public async Task<User> GetUser(int id)
         {
-            return await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
+            return await _dbContext.Users.SingleOrDefaultAsync(u => u.Id == id);
         }
     }
 }

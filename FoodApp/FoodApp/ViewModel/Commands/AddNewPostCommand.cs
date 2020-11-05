@@ -15,7 +15,9 @@ namespace FoodApp.ViewModel.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            var post = (Post)parameter;
+
+            return post != null;
         }
 
         public void Execute(object parameter)
