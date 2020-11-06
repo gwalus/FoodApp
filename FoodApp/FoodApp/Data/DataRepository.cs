@@ -22,6 +22,7 @@ namespace FoodApp.Data
         {
             var user = await _userService.GetUser(App.CurrentUser.Id);
             post.UserId = user.Id;
+            post.PostAdded = DateTime.Today;
 
             try
             {

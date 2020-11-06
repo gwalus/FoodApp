@@ -8,7 +8,7 @@
             NavigationPage.HasBackButton="False"
             BarBackgroundColor="{StaticResource mainAppColor}">
     <TabbedPage.ToolbarItems>
-        <!--<ToolbarItem Text="Logout"-->
+        <ToolbarItem Text="Logout"/>
         <!--<ToolbarItem Text="{Binding Email, Mode=TwoWay, StringFormat='Login As: {0}'}"/>-->
         <ToolbarItem Text="Test" Command="{Binding TestingCommand}"/>
     </TabbedPage.ToolbarItems>

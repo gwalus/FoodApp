@@ -6,32 +6,33 @@
     <Frame Margin="20" CornerRadius="15">
         <ScrollView>
             <StackLayout Margin="20">
-                <Label Text="Adding new post"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold"
-                   FontSize="18"
-                   Margin="0, 0, 0, 20"/>
+                <Label  Text="Adding new post"
+                        HorizontalOptions="Center"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        Margin="0, 0, 0, 20"/>
+                
                 <Picker ItemsSource="{Binding MealType}"
                         SelectedItem="{Binding MealTypeSelected, Mode=TwoWay}"
-                    Title="Meal type:"/>
+                        Title="Meal type:"/>
 
-                <Entry Text="{Binding MealName, Mode=TwoWay}"
-                   Placeholder="Meal name"/>
+                <Entry  Text="{Binding MealName, Mode=TwoWay}"
+                        Placeholder="Meal name"/>
 
-                <Picker ItemsSource="{Binding Count}"
-                        SelectedItem="{Binding CountSelected, Mode=TwoWay}"
-                    Title="Count"/>
+                <Picker ItemsSource="{Binding Quantity}"
+                        SelectedItem="{Binding QuantitySelected, Mode=TwoWay}"
+                        Title="Count"/>
 
-                <Entry Text="{Binding Weight, Mode=TwoWay}"
-                   Keyboard="Numeric"
-                       Placeholder="Weight (g)"/>
+                <Entry  Text="{Binding Weight, Mode=TwoWay}"
+                        Keyboard="Numeric"
+                        Placeholder="Weight (g)"/>
 
-                <Picker ItemsSource="{Binding Scale}"
-                        SelectedItem="{Binding ScaleSelected, Mode=TwoWay}"
-                    Title="Scale (1-5)"/>
+                <Picker ItemsSource="{Binding Rate}"
+                        SelectedItem="{Binding RateSelected, Mode=TwoWay}"
+                        Title="Scale (1-5)"/>
 
                 <Button Text="Add"
-                    Style="{StaticResource ButtonOfTypeAccept}"
+                        Style="{StaticResource ButtonOfTypeAccept}"
                         Command="{Binding AddNewPostCommand}"
                         CommandParameter="{Binding Post}"/>
             </StackLayout>

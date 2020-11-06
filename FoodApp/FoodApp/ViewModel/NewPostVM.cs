@@ -3,8 +3,6 @@ using FoodApp.Models;
 using FoodApp.ViewModel.Commands;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace FoodApp.ViewModel
 {
@@ -51,29 +49,29 @@ namespace FoodApp.ViewModel
             }
         }
 
-        List<int> count;
-        public List<int> Count
+        private List<int> quantity;
+        public List<int> Quantity
         {
-            get { return count; }
+            get { return quantity; }
             set
             {
-                if (count != value)
+                if (quantity != value)
                 {
-                    count = value;
+                    quantity = value;
                 }
             }
         }
 
-        private object countSelected;
+        private object quantitySelected;
 
-        public object CountSelected
+        public object QuantitySelected
         {
-            get { return countSelected; }
+            get { return quantitySelected; }
             set
             {
-                countSelected = value;
-                if(CountSelected != null)
-                    Post.Count = int.Parse(CountSelected.ToString());
+                quantitySelected = null;
+                if (QuantitySelected != null)
+                    Post.Quantity = int.Parse(QuantitySelected.ToString());
             }
         }
 
@@ -90,29 +88,29 @@ namespace FoodApp.ViewModel
             }
         }
 
-        List<int> scale;
-        public List<int> Scale
+        List<int> rate;
+        public List<int> Rate
         {
-            get { return scale; }
+            get { return rate; }
             set
             {
-                if (scale != value)
+                if (rate != value)
                 {
-                    scale = value;
+                    rate = value;
                 }
             }
         }
 
-        private object scaleSelected;
+        private object rateSelected;
 
-        public object ScaleSelected
+        public object RateSelected
         {
-            get { return scaleSelected; }
+            get { return rateSelected; }
             set
             {
-                scaleSelected = value;
-                if(ScaleSelected != null)
-                    Post.Scale = int.Parse(ScaleSelected.ToString());
+                rateSelected = value;
+                if(RateSelected != null)
+                    Post.Rate = int.Parse(RateSelected.ToString());
             }
         }
 
@@ -122,8 +120,8 @@ namespace FoodApp.ViewModel
         public NewPostVM()
         {
             MealType = new List<string> { "Breakfast", "Lunch", "Dinner", "Dessert", "Other" };
-            Count = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-            Scale = new List<int> { 1, 2, 3, 4, 5 };
+            Quantity = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            Rate = new List<int> { 1, 2, 3, 4, 5 };
             Post = new Post();
             AddNewPostCommand = new AddNewPostCommand(this);
             _repo = new DataRepository();
@@ -144,9 +142,9 @@ namespace FoodApp.ViewModel
             Post = new Post();
             MealTypeSelected = null;
             MealName = string.Empty;
-            CountSelected = null;
+            QuantitySelected = null;
             Weight = string.Empty;
-            ScaleSelected = null;
+            RateSelected = null;
         }
 
 #pragma warning disable 67

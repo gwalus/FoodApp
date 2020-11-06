@@ -5,10 +5,12 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView ItemsSource="{Binding Posts}" 
-                      VerticalOptions="FillAndExpand" 
+                      VerticalOptions="Center" 
                       HasUnevenRows="True" 
                       SeparatorColor="{StaticResource NavigationBarColor}"
-                      Margin="10">
+                      Margin="10"
+                      IsGroupingEnabled="True"
+                      GroupDisplayBinding="{Binding PostAdded, StringFormat='{0:dd.MM.yyyy}'}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -16,7 +18,7 @@
                                 <Expander.Header>
                                     <Label Text="{Binding MealType}"
                                            HorizontalTextAlignment="Center"
-                                           FontSize="25"
+                                           FontSize="20"
                                            FontAttributes="Bold"/>
                                 </Expander.Header>
                                 <Grid>
@@ -28,17 +30,18 @@
                                     </Grid.RowDefinitions>
 
                                     <Label Grid.Row="0" Text="{Binding MealName, StringFormat='Mealname: {0}'}"/>
-                                    <Label Grid.Row="1" Text="{Binding Count, StringFormat='Count: {0}'}"/>
+                                    <Label Grid.Row="1" Text="{Binding Quantity, StringFormat='Quantity: {0}'}"/>
                                     <Label Grid.Row="2" Text="{Binding Weight, StringFormat='Weight: {0} g'}"/>
-                                    <Label Grid.Row="3" Text="{Binding Scale, StringFormat='Scale: {0}'}"/>
+                                    <Label Grid.Row="3" Text="{Binding Rate, StringFormat='Rate: {0}'}"/>
                                 </Grid>
                             </Expander>
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!--<CollectionView ItemsSource="{Binding Posts}"/>-->
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

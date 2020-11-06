@@ -1,41 +1,39 @@
 ﻿using FoodApp.Data;
-using FoodApp.Models;
-using FoodApp.Pages;
-using System.Collections.Generic;
+using FoodApp.Helpers;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using Xamarin.Forms.Internals;
 
 namespace FoodApp.ViewModel
 {
     public class HistoryPageVM : INotifyPropertyChanged
     {
-        private List<Post> posts;
-
-        public List<Post> Posts
-        {
-            get { return posts; }
-            set 
-            {
-                posts = value;
-            }
-        }
-
+        public ObservableCollection<PostGroup> Posts { get; set; } = new ObservableCollection<PostGroup>();
 
         DataRepository _repo;
 
         public HistoryPageVM()
         {
             _repo = new DataRepository();
-            Posts = new List<Post>();
         }
 
         public async void LoadPosts()
         {
+            Posts.Clear();
+
             var posts = await _repo.GetPosts(App.CurrentUser.Id);
-            Posts = posts.ToList();
+            var dates = posts.Select(x => x.PostAdded).Distinct().ToList();
+
+            foreach (var date in dates)
+            {
+                var postsByDate = posts.Where(x => x.PostAdded == date).ToList();
+
+
+                var postGroup = new PostGroup(date, postsByDate);
+                Posts.Add(postGroup);
+            }            
         }
+
 #pragma warning disable 67
         public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore 67
