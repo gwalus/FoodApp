@@ -12,22 +12,22 @@
                    FontSize="18"
                    Margin="0, 0, 0, 20"/>
                 <Picker ItemsSource="{Binding MealType}"
-                        SelectedItem="{Binding MealTypeSelected, Mode=OneWayToSource}"
+                        SelectedItem="{Binding MealTypeSelected, Mode=TwoWay}"
                     Title="Meal type:"/>
 
-                <Entry Text="{Binding MealName, Mode=OneWayToSource}"
+                <Entry Text="{Binding MealName, Mode=TwoWay}"
                    Placeholder="Meal name"/>
 
                 <Picker ItemsSource="{Binding Count}"
-                        SelectedItem="{Binding CountSelected, Mode=OneWayToSource}"
+                        SelectedItem="{Binding CountSelected, Mode=TwoWay}"
                     Title="Count"/>
 
-                <Entry Text="{Binding Weight, Mode=OneWayToSource}"
+                <Entry Text="{Binding Weight, Mode=TwoWay}"
                    Keyboard="Numeric"
                        Placeholder="Weight (g)"/>
 
                 <Picker ItemsSource="{Binding Scale}"
-                        SelectedItem="{Binding ScaleSelected, Mode=OneWayToSource}"
+                        SelectedItem="{Binding ScaleSelected, Mode=TwoWay}"
                     Title="Scale (1-5)"/>
 
                 <Button Text="Add"

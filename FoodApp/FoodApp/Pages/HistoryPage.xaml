@@ -29,7 +29,7 @@
 
                                     <Label Grid.Row="0" Text="{Binding MealName, StringFormat='Mealname: {0}'}"/>
                                     <Label Grid.Row="1" Text="{Binding Count, StringFormat='Count: {0}'}"/>
-                                    <Label Grid.Row="2" Text="{Binding Weight, StringFormat='Weight: {0:F2}'}"/>
+                                    <Label Grid.Row="2" Text="{Binding Weight, StringFormat='Weight: {0} g'}"/>
                                     <Label Grid.Row="3" Text="{Binding Scale, StringFormat='Scale: {0}'}"/>
                                 </Grid>
                             </Expander>
@@ -37,6 +37,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <!--<CollectionView ItemsSource="{Binding Posts}"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

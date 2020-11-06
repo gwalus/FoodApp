@@ -25,23 +25,16 @@ namespace FoodApp.ViewModel
             }
         }
 
-        private string mealTypeSelected;
+        private object mealTypeSelected;
 
-        public string MealTypeSelected
+        public object MealTypeSelected
         {
             get { return mealTypeSelected; }
             set
             {
                 mealTypeSelected = value;
-                Post.MealType = MealTypeSelected;
-                //Post = new Post()
-                //{
-                //    MealType = MealTypeSelected,
-                //    //MealName = MealName,
-                //    //Count = CountSelected,
-                //    //Weight = double.Parse(Weight.ToString()),
-                //    //Scale = int.Parse(ScaleSelected.ToString())
-                //};
+                if(MealTypeSelected != null)
+                    Post.MealType = MealTypeSelected.ToString();
             }
         }
 
@@ -55,14 +48,6 @@ namespace FoodApp.ViewModel
             {
                 mealName = value;
                 Post.MealName = MealName;
-                //Post = new Post()
-                //{
-                //    //MealType = MealTypeSelected.ToString(),
-                //    MealName = MealName
-                //    //Count = int.Parse(CountSelected.ToString()),
-                //    //Weight = double.Parse(Weight.ToString()),
-                //    //Scale = int.Parse(ScaleSelected.ToString())
-                //};
             }
         }
 
@@ -79,23 +64,16 @@ namespace FoodApp.ViewModel
             }
         }
 
-        private int countSelected;
+        private object countSelected;
 
-        public int CountSelected
+        public object CountSelected
         {
             get { return countSelected; }
             set
             {
                 countSelected = value;
-                Post.Count = CountSelected;
-                //Post = new Post()
-                //{
-                //    //MealType = MealTypeSelected.ToString(),
-                //    //MealName = MealName,
-                //    Count = CountSelected
-                //    //Weight = double.Parse(Weight.ToString()),
-                //    //Scale = int.Parse(ScaleSelected.ToString())
-                //};
+                if(CountSelected != null)
+                    Post.Count = int.Parse(CountSelected.ToString());
             }
         }
 
@@ -107,15 +85,8 @@ namespace FoodApp.ViewModel
             set
             {
                 weight = value;
-                Post.Weight = int.Parse(Weight);
-                //Post = new Post()
-                //{
-                //    //MealType = MealTypeSelected.ToString(),
-                //    //MealName = MealName,
-                //    //Count = int.Parse(CountSelected.ToString()),
-                //    Weight = double.Parse(Weight.ToString())
-                //    //Scale = int.Parse(ScaleSelected.ToString())
-                //};
+                if(!string.IsNullOrWhiteSpace(Weight))
+                    Post.Weight = int.Parse(Weight);
             }
         }
 
@@ -132,23 +103,16 @@ namespace FoodApp.ViewModel
             }
         }
 
-        private int scaleSelected;
+        private object scaleSelected;
 
-        public int ScaleSelected
+        public object ScaleSelected
         {
             get { return scaleSelected; }
             set
             {
                 scaleSelected = value;
-                Post.Scale = ScaleSelected;
-                //Post = new Post()
-                //{
-                //    //MealType = MealTypeSelected.ToString(),
-                //    //MealName = MealName,
-                //    //Count = int.Parse(CountSelected.ToString()),
-                //    //Weight = double.Parse(Weight.ToString()),
-                //    Scale = ScaleSelected
-                //};
+                if(ScaleSelected != null)
+                    Post.Scale = int.Parse(ScaleSelected.ToString());
             }
         }
 
@@ -168,8 +132,21 @@ namespace FoodApp.ViewModel
         public async void AddNewPost(Post post)
         {
             if(await _repo.AddPost(post))
+            {
                 await App.Current.MainPage.DisplayAlert("Success", "New post has been added", "Ok");
+                ClearPropertyBindings();
+            }
             else await App.Current.MainPage.DisplayAlert("Failed", "Something went wrong", "Ok");
+        }
+
+        private void ClearPropertyBindings()
+        {
+            Post = new Post();
+            MealTypeSelected = null;
+            MealName = string.Empty;
+            CountSelected = null;
+            Weight = string.Empty;
+            ScaleSelected = null;
         }
 
 #pragma warning disable 67
