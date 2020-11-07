@@ -4,25 +4,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace FoodApp.Data
 {
     public class DataRepository : IDataRepository
     {
         FoodAppContext _dbContext;
-        UserService _userService;
+        IUserService _userService;
 
         public DataRepository()
         {
-            _dbContext = new FoodAppContext();
-            _userService = new UserService();
+            _dbContext = DependencyService.Get<FoodAppContext>();
+            _userService = DependencyService.Get<IUserService>();
         }
 
         public async Task<bool> AddPost(Post post)
         {
             var user = await _userService.GetUser(App.CurrentUser.Id);
             post.UserId = user.Id;
-            post.PostAdded = DateTime.Today.AddDays(1);
+            post.PostAdded = DateTime.Today;
 
             try
             {

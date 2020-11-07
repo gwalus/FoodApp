@@ -4,16 +4,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
+using Xamarin.Forms;
 
 namespace FoodApp.Data
 {
     public class UserService : IUserService
     {
-        private readonly FoodAppContext _dbContext;
+        FoodAppContext _dbContext;
 
         public UserService()
         {
-            _dbContext = new FoodAppContext();
+            _dbContext = DependencyService.Get<FoodAppContext>();
         }
 
         public async Task<User> Login(string email, string password)
