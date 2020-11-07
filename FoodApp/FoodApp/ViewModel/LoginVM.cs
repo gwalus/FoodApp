@@ -13,7 +13,6 @@ namespace FoodApp.ViewModel
     {
         public UserForLoginDto User { get; set; }
         public ImageSource Image { get; set; }
-        private readonly UserService _userService;
 
         private string email;
 
@@ -61,13 +60,15 @@ namespace FoodApp.ViewModel
         public UserLoginCommand UserLoginCommand { get; set; }
         public GoToRegisterPageCommand GoToRegisterPageCommand { get; set; }
 
-        public LoginVM()
+        private readonly IUserService _userService;
+
+        public LoginVM(IUserService userService)
         {
+            _userService = userService;
             UserLoginCommand = new UserLoginCommand(this);
             GoToRegisterPageCommand = new GoToRegisterPageCommand(this);
             Image = ImageSource.FromResource("FoodApp.Assets.Icons.icon_food.png");
             User = new UserForLoginDto();
-            _userService = new UserService();
         }
 
 #pragma warning disable 67

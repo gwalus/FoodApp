@@ -69,7 +69,7 @@ namespace FoodApp.ViewModel
             get { return quantitySelected; }
             set
             {
-                quantitySelected = null;
+                quantitySelected = value;
                 if (QuantitySelected != null)
                     Post.Quantity = int.Parse(QuantitySelected.ToString());
             }
@@ -115,16 +115,16 @@ namespace FoodApp.ViewModel
         }
 
         public AddNewPostCommand AddNewPostCommand { get; set; }
-        private DataRepository _repo;
+        private IDataRepository _repo;
 
-        public NewPostVM()
+        public NewPostVM(IDataRepository repo)
         {
+            _repo = repo;
             MealType = new List<string> { "Breakfast", "Lunch", "Dinner", "Dessert", "Other" };
             Quantity = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
             Rate = new List<int> { 1, 2, 3, 4, 5 };
             Post = new Post();
             AddNewPostCommand = new AddNewPostCommand(this);
-            _repo = new DataRepository();
         }
 
         public async void AddNewPost(Post post)

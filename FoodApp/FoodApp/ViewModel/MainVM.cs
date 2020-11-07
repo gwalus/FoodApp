@@ -1,15 +1,11 @@
 ﻿using FoodApp.Data;
 using FoodApp.ViewModel.Commands;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.ComponentModel;
 
 namespace FoodApp.ViewModel
 {
     public class MainVM : INotifyPropertyChanged
     {
-        FoodAppContext _dbContext;
-
         private string email;
 
         public string Email
@@ -19,13 +15,15 @@ namespace FoodApp.ViewModel
         }
 
         public TestingCommand TestingCommand { get; set; }
-        DataRepository _repo;
 
-        public MainVM()
+        FoodAppContext _dbContext;
+        IDataRepository _repo;
+
+        public MainVM(FoodAppContext context, IDataRepository repo)
         {
+            _dbContext = context;
+            _repo = repo;
             TestingCommand = new TestingCommand(this);
-            _repo = new DataRepository();
-            _dbContext = new FoodAppContext();
         }
 
 #pragma warning disable 67

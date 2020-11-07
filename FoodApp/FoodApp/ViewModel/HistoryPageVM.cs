@@ -10,11 +10,11 @@ namespace FoodApp.ViewModel
     {
         public ObservableCollection<PostGroup> Posts { get; set; } = new ObservableCollection<PostGroup>();
 
-        DataRepository _repo;
+        IDataRepository _repo;
 
-        public HistoryPageVM()
+        public HistoryPageVM(IDataRepository repo)
         {
-            _repo = new DataRepository();
+            _repo = repo;
         }
 
         public async void LoadPosts()
@@ -28,10 +28,9 @@ namespace FoodApp.ViewModel
             {
                 var postsByDate = posts.Where(x => x.PostAdded == date).ToList();
 
-
                 var postGroup = new PostGroup(date, postsByDate);
-                Posts.Add(postGroup);
-            }            
+                Posts.Insert(0, postGroup);
+            }
         }
 
 #pragma warning disable 67

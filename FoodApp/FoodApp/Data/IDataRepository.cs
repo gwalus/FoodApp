@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Data
 {
-    interface IDataRepository
+    public interface IDataRepository
     {
         Task<bool> AddPost(Post post);
         Task<ICollection<Post>> GetPosts(int id);

@@ -1,4 +1,5 @@
-﻿using FoodApp.ViewModel;
+﻿using FoodApp.Data;
+using FoodApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +13,10 @@ namespace FoodApp.Pages
         public HistoryPage()
         {
             InitializeComponent();
-            _viewModel = new HistoryPageVM();
+
+            var dataService = DependencyService.Resolve<IDataRepository>();
+
+            _viewModel = new HistoryPageVM(dataService);
             BindingContext = _viewModel;
         }
 

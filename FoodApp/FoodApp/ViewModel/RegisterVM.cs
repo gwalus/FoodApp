@@ -84,15 +84,15 @@ namespace FoodApp.ViewModel
 
         public CancelRegisterCommand CancelRegisterCommand { get; set; }
         public UserRegisterCommand UserRegisterCommand { get; set; }
-        private UserService _userService { get; set; }
+        private IUserService _userService { get; set; }
 
-        public RegisterVM()
+        public RegisterVM(IUserService userService)
         {
+            _userService = userService;
             Image = ImageSource.FromResource("FoodApp.Assets.Icons.icon_user.png");
             CancelRegisterCommand = new CancelRegisterCommand(this);
             UserRegisterCommand = new UserRegisterCommand(this);
             User = new UserForRegisterDto();
-            _userService = new UserService();
         }
 
         public async void Register(UserForRegisterDto userForRegisterDto)
