@@ -4,9 +4,11 @@
              x:Class="FoodApp.Pages.ProfilePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to the Profile Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding UserName, StringFormat='Witaj {0}'}"
+                   HorizontalOptions="Center"
+                   Margin="10"
+                   FontSize="22"
+                   FontAttributes="Bold"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

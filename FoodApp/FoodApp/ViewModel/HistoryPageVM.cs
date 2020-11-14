@@ -10,7 +10,7 @@ namespace FoodApp.ViewModel
     {
         public ObservableCollection<PostGroup> Posts { get; set; } = new ObservableCollection<PostGroup>();
 
-        IDataRepository _repo;
+        private readonly IDataRepository _repo;
 
         public HistoryPageVM(IDataRepository repo)
         {

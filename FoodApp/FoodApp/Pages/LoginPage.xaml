@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodApp.LoginPage"
              BackgroundColor="{StaticResource mainAppColor}"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core">
     <Frame Margin="20" CornerRadius="50">
         <StackLayout Margin="15, 0" VerticalOptions="Center">
-            <!--<ActivityIndicator Color="Pink" IsRunning="{Binding Loading, Mode=TwoWay}"/>-->
             <Label Text="FOOD APP"
                    HorizontalOptions="Center" 
                    FontSize="35"/>
@@ -16,11 +16,13 @@
 
             <Entry Placeholder="email"
                    Keyboard="Email"
-                   Text="{Binding Email, StringFormat='{0}', Mode=TwoWay}"/>
+                   Text="{Binding Email, StringFormat='{0}', Mode=TwoWay}"
+                   android:Entry.ImeOptions="Next"/>
 
             <Entry Placeholder="password"
                    IsPassword="True"
-                   Text="{Binding Password, Mode=TwoWay}"/>
+                   Text="{Binding Password, Mode=TwoWay}"
+                   android:Entry.ImeOptions="Next"/>
 
             <Button Text="Log in"
                     Margin="10, 25"

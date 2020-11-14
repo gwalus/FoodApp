@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodApp.MainPage"
             xmlns:pages="clr-namespace:FoodApp.Pages"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              BackgroundColor="{StaticResource mainAppColor}"
             SelectedTabColor="Black"
             NavigationPage.HasBackButton="False"
-            BarBackgroundColor="{StaticResource mainAppColor}">
+            BarBackgroundColor="{StaticResource mainAppColor}"
+            android:TabbedPage.IsSmoothScrollEnabled="True">
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="Logout"/>
-        <!--<ToolbarItem Text="{Binding Email, Mode=TwoWay, StringFormat='Login As: {0}'}"/>-->
         <ToolbarItem Text="Test" Command="{Binding TestingCommand}"/>
     </TabbedPage.ToolbarItems>
 

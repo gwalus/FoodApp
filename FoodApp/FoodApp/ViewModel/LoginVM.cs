@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EdamanService;
 using FoodApp.Data;
 using FoodApp.Dtos;
 using FoodApp.Models;
@@ -69,6 +70,9 @@ namespace FoodApp.ViewModel
             GoToRegisterPageCommand = new GoToRegisterPageCommand(this);
             Image = ImageSource.FromResource("FoodApp.Assets.Icons.icon_food.png");
             User = new UserForLoginDto();
+
+            //FoodInfoService foodInfoService = new FoodInfoService();
+            //foodInfoService.GetFoodInfo("banana");
         }
 
 #pragma warning disable 67

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using FoodApp.ViewModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FoodApp.Pages
@@ -9,6 +10,8 @@ namespace FoodApp.Pages
         public ProfilePage()
         {
             InitializeComponent();
+
+            BindingContext = new ProfilePageVM();
         }
     }
 }

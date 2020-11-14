@@ -1,4 +1,5 @@
-﻿using FoodApp.Data;
+﻿using EdamanService;
+using FoodApp.Data;
 using FoodApp.Dtos;
 using Xamarin.Forms;
 
@@ -14,6 +15,7 @@ namespace FoodApp
 
             DependencyService.Register<IUserService, UserService>();
             DependencyService.Register<IDataRepository, DataRepository>();
+            DependencyService.Register<IFoodInfoService, FoodInfoService>();
             DependencyService.Register<FoodAppContext>();
 
             MainPage = new NavigationPage(new LoginPage());

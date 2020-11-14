@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodApp.Pages.HistoryPage">
+             x:Class="FoodApp.Pages.HistoryPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core">
     <ContentPage.Content>
         <StackLayout>
             <ListView ItemsSource="{Binding Posts}" 
@@ -10,7 +11,8 @@
                       SeparatorColor="{StaticResource NavigationBarColor}"
                       Margin="10"
                       IsGroupingEnabled="True"
-                      GroupDisplayBinding="{Binding PostAdded, StringFormat='{0:dd.MM.yyyy}'}">
+                      GroupDisplayBinding="{Binding PostAdded, StringFormat='{0:dd.MM.yyyy}'}"
+                      android:ListView.IsFastScrollEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
