@@ -1,12 +1,8 @@
 ﻿using EdamanService;
 using EdamanService.Models;
 using FoodApp.ViewModel.Commands;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodApp.ViewModel
 {
@@ -26,27 +22,15 @@ namespace FoodApp.ViewModel
             }
         }
 
-        private IList<Parsed> lista;
+        private bool infoVisible = false;
 
-        public IList<Parsed> Lista
+        public bool InfoVisible
         {
-            get { return lista; }
+            get { return infoVisible; }
             set
             {
-                lista = value;
-                OnPropertyChanged("Lista");
-            }
-        }
-
-        private bool collectionVisible;
-
-        public bool CollectionVisible
-        {
-            get { return collectionVisible; }
-            set
-            {
-                collectionVisible = value;
-                OnPropertyChanged("CollectionVisible");
+                infoVisible = value;
+                OnPropertyChanged("InfoVisible");
             }
         }
 
@@ -76,20 +60,25 @@ namespace FoodApp.ViewModel
 
             if (infoAboutFood.Count != 0)
             {
-                Lista = infoAboutFood.ToList();
-                CollectionVisible = true;
+                var food = infoAboutFood.FirstOrDefault();
+
+                if (food.Food.Image == null)
+                    food.Food.Image = "question_icon.png";
+
+                Food = food.Food;
+                InfoVisible = true;
                 NotFoundVisible = false;
             }
             else
             {
-                CollectionVisible = false;
+                InfoVisible = false;
                 NotFoundVisible = true;
             }
         }
 
         public void OnAppering()
         {
-            CollectionVisible = false;
+            InfoVisible = false;
             NotFoundVisible = false;
         }
 
