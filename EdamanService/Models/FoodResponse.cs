@@ -13,18 +13,18 @@ namespace EdamanService.Models
 
     public class Food
     {
-        public string foodId { get; set; }
-        public string label { get; set; }
-        public Nutrients nutrients { get; set; }
-        public string category { get; set; }
-        public string categoryLabel { get; set; }
-        public double servingsPerContainer { get; set; }
-        public string image { get; set; }
+        public string FoodId { get; set; }
+        public string Label { get; set; }
+        public Nutrients Nutrients { get; set; }
+        public string Category { get; set; }
+        public string CategoryLabel { get; set; }
+        public double ServingsPerContainer { get; set; }
+        public string Image { get; set; }
     }
 
     public class Parsed
     {
-        public Food food { get; set; }
+        public Food Food { get; set; }
     }
 
     public class Qualifier
@@ -57,7 +57,7 @@ namespace EdamanService.Models
     public class FoodResponse
     {
         public string text { get; set; }
-        public IList<Parsed> parsed { get; set; }
+        public IList<Parsed> Parsed { get; set; }
         public IList<Hint> hints { get; set; }
     }
 }

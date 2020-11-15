@@ -22,7 +22,7 @@ namespace EdamanService
             var response = await client.ExecuteAsync<FoodResponse>(request);
 
             if (response.IsSuccessful)
-                return response.Data.parsed;
+                return response.Data.Parsed;
             return null;
         }
     }

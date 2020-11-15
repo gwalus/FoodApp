@@ -16,6 +16,7 @@
 
     <pages:HistoryPage Title="History"/>
     <pages:NewPostPage Title="Posts"/>
+    <pages:SearchPage Title="Search"/>
     <pages:ProfilePage Title="Profile"/>
 
 </TabbedPage>
