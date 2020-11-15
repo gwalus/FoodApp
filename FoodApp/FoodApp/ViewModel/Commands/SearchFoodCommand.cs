@@ -5,11 +5,11 @@ using System.Windows.Input;
 
 namespace FoodApp.ViewModel.Commands
 {
-    public class SearchCommand : ICommand
+    public class SearchFoodCommand : ICommand
     {
-        private readonly SearchPageVM _viewModel;
+        private readonly SearchFoodPageVM _viewModel;
 
-        public SearchCommand(SearchPageVM viewModel)
+        public SearchFoodCommand(SearchFoodPageVM viewModel)
         {
             _viewModel = viewModel;
         }

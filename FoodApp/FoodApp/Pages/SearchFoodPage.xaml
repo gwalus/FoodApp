@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodApp.Pages.SearchFoodPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <StackLayout Margin="10">
+            <SearchBar Placeholder="Search food..."
+                       SearchCommand="{Binding SearchFoodCommand}"
+                       SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+
+            <Frame IsVisible="{Binding NotFoundVisible}" Margin="0,10,0,0">
+                <Label Text="Not found..." HorizontalOptions="CenterAndExpand"/>
+            </Frame>
+
+            <StackLayout IsVisible="{Binding InfoVisible}">
+                <Grid  BindingContext="{Binding Food}"
+                  Margin="10">
+
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding Category}"
+                                   HorizontalOptions="Center"
+                                   FontSize="Title"
+                                   Margin="0,0,0,10"/>
+
+                    <Frame Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding Image}"/>
+                            <Label Text="{Binding Label}"
+                               Grid.Column="1"
+                               VerticalOptions="Center"
+                               FontAttributes="Italic"
+                               FontSize="18"
+                               Margin="10,0,0,0"/>
+                        </Grid>
+                    </Frame>
+
+                    <Frame Grid.Row="2" 
+                       HorizontalOptions="Fill"
+                       BindingContext="{Binding Nutrients}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.Resources>
+                                <ResourceDictionary>
+                                    <Style TargetType="Label">
+                                        <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                                    </Style>
+                                </ResourceDictionary>
+                            </Grid.Resources>
+
+                            <Label Grid.Row="0" Text="Energy"/>
+                            <Label Grid.Row="1" Text="Protein"/>
+                            <Label Grid.Row="2" Text="Fat"/>
+                            <Label Grid.Row="3" Text="Carbs"/>
+                            <Label Grid.Row="4" Text="Fiber"/>
+
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding ENERC_KCAL, StringFormat='{0} kcal'}"/>
+                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding PROCNT, StringFormat='{0} g'}"/>
+                            <Label Grid.Column="1" Grid.Row="2" Text="{Binding FAT, StringFormat='{0} g'}"/>
+                            <Label Grid.Column="1" Grid.Row="3" Text="{Binding CHOCDF, StringFormat='{0} g'}"/>
+                            <Label Grid.Column="1" Grid.Row="4" Text="{Binding FIBTG, StringFormat='{0} g'}"/>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

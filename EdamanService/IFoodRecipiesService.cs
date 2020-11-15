@@ -1,10 +1,11 @@
 ﻿using EdamanService.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EdamanService
 {
     public interface IFoodRecipiesService
     {
-        Task<RecipeResponse> GetRecipe(string name);
+        Task<IList<Hit>> GetRecipies(string name);
     }
 }

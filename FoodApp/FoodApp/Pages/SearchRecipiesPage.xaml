@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodApp.Pages.SearchRecipiesPage">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <SearchBar Placeholder="Search recipe..."
+                       SearchCommand="{Binding SearchRecipiesCommand}"
+                       SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+
+            <CollectionView ItemsSource="{Binding Recipies}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame CornerRadius="5" BorderColor="Black" Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding recipe.label}"
+                                           Grid.ColumnSpan="2"
+                                           FontAttributes="Bold,Italic"
+                                           FontSize="18"
+                                           HorizontalTextAlignment="End"
+                                           Margin="0,0,0,5">
+                                    </Label>
+                                    
+                                    <Image Grid.RowSpan="2" Source="{Binding recipe.image}"/>
+
+                                    <StackLayout Grid.Row="1" 
+                                                 Grid.Column="1" 
+                                                 HorizontalOptions="StartAndExpand" 
+                                                 Margin="20,0,0,0"
+                                                 VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding recipe.calories, StringFormat='Energy: {0:f} kcal'}"/>
+                                        <Label Text="{Binding recipe.totalWeight, StringFormat='Weight: {0:f} g'}"/>
+                                        <Label Text="{Binding recipe.totalTime, StringFormat='Total time: {0} minutes'}"/>
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,5 +1,6 @@
 ﻿using EdamanService.Models;
 using RestSharp;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EdamanService
@@ -9,7 +10,7 @@ namespace EdamanService
         static string app_id = "b7205918";
         static string app_key = "d26c3dd8a6704b67c165ae41e3656f6f";
 
-        public async Task<RecipeResponse> GetRecipe(string name)
+        public async Task<IList<Hit>> GetRecipies(string name)
         {
             var client = new RestClient("https://api.edamam.com/search");
 
@@ -21,7 +22,7 @@ namespace EdamanService
             var response = await client.ExecuteAsync<RecipeResponse>(request);
 
             if (response.IsSuccessful)
-                return response.Data;
+                return response.Data.Hits;
             return null;
         }
     }

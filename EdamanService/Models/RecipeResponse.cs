@@ -382,6 +382,6 @@ namespace EdamanService.Models
         public int to { get; set; }
         public bool more { get; set; }
         public int count { get; set; }
-        public IList<Hit> hits { get; set; }
+        public IList<Hit> Hits { get; set; }
     }
 }

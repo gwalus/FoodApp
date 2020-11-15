@@ -14,9 +14,9 @@
         <ToolbarItem Text="Test" Command="{Binding TestingCommand}"/>
     </TabbedPage.ToolbarItems>
 
-    <pages:HistoryPage Title="History"/>
-    <pages:NewPostPage Title="Posts"/>
-    <pages:SearchPage Title="Search"/>
-    <pages:ProfilePage Title="Profile"/>
+    <pages:HistoryPage IconImageSource="history_icon.png"/>
+    <pages:NewPostPage IconImageSource="add_icon.png"/>
+    <pages:SearchPage IconImageSource="search_icon.png"/>
+    <pages:ProfilePage IconImageSource="profile_icon.png"/>
 
 </TabbedPage>

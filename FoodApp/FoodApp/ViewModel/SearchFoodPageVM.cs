@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace FoodApp.ViewModel
 {
-    public class SearchPageVM : INotifyPropertyChanged
+    public class SearchFoodPageVM : INotifyPropertyChanged
     {
         private readonly IFoodInfoService _foodInfoService;
 
@@ -46,11 +46,11 @@ namespace FoodApp.ViewModel
             }
         }
 
-        public SearchCommand SearchCommand { get; set; }
+        public SearchFoodCommand SearchFoodCommand { get; set; }
 
-        public SearchPageVM(IFoodInfoService foodInfoService)
+        public SearchFoodPageVM(IFoodInfoService foodInfoService)
         {
-            SearchCommand = new SearchCommand(this);
+            SearchFoodCommand = new SearchFoodCommand(this);
             _foodInfoService = foodInfoService;
         }
 
