@@ -1,6 +1,8 @@
 ﻿using EdamanService;
 using EdamanService.Models;
+using FoodApp.Pages;
 using FoodApp.ViewModel.Commands;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace FoodApp.ViewModel
         private readonly IFoodRecipiesService _foodRecipiesService;
 
         public SearchRecipiesCommand SearchRecipiesCommand { get; set; }
+        public GetRecipeDetailCommand GetRecipeDetailCommand { get; set; }
         private IList<Hit> recipies;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,10 +29,15 @@ namespace FoodApp.ViewModel
             }
         }
 
+        public async void GoToRecipeDetailedPage(Recipe recipe)
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new RecipeDetailedPage(recipe));
+        }
 
         public SearchRecipiesPageVM(IFoodRecipiesService foodRecipiesService)
         {
             SearchRecipiesCommand = new SearchRecipiesCommand(this);
+            GetRecipeDetailCommand = new GetRecipeDetailCommand(this);
             _foodRecipiesService = foodRecipiesService;
         }
 
@@ -37,9 +45,7 @@ namespace FoodApp.ViewModel
         {
             var recipies = await _foodRecipiesService.GetRecipies(recipeName);
 
-            //recipies.Take(5);
-
-            Recipies = recipies.Take(5).ToList();
+            Recipies = recipies.ToList();            
         }
 
         private void OnPropertyChanged(string memberName)

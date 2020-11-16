@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodApp.Pages.RecipeDetailedPage"
+             x:Name="ThisPage"
+             BackgroundColor="{StaticResource mainAppColor}">
+    
+        <Frame Margin="15" CornerRadius="5" BorderColor="Black">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    
+                </Grid.RowDefinitions>
+
+                <Label Text="{Binding Recipe.label}"
+                       FontAttributes="Bold,Italic"
+                       HorizontalOptions="Center"
+                       FontSize="Title"
+                       Margin="0,0,0,5"/>
+
+                <Image Grid.Row="1" Source="{Binding Recipe.image}"
+                       Margin="0,0,0,5"/>
+
+                <ListView Grid.Row="2" 
+                          ItemsSource="{Binding Recipe.ingredients}" 
+                          SeparatorVisibility="Default"
+                          SelectionMode="None">
+                    <ListView.Header>
+                        <Label Text="Components:" 
+                               FontAttributes="Bold,Italic" 
+                               HorizontalOptions="StartAndExpand"
+                               FontSize="16"
+                               Margin="0,0,0,5"/>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                        <!--<TextCell Text="{Binding text, StringFormat='■ {0}'}"/>-->
+                        
+                    </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <!--<StackLayout Grid.Row="3" BindingContext="{Binding Recipe.totalNutrients.ENERC_KCAL}">
+                    <Label Text="{Binding label}"/>
+                    <Label Text="{Binding quantity}"/>
+                    <Label Text="{Binding unit}"/>
+                    -->
+                <!--<Label Text="{Binding FAT.label}"/>
+                                <Label Text="{Binding PROCNT.label}"/>
+                                <Label Text="{Binding FIBTG.label}"/>-->
+                <!--
+                </StackLayout>-->
+
+            </Grid>
+        </Frame>
+    
+</ContentPage>

@@ -271,58 +271,6 @@ namespace EdamanService.Models
         public WATER WATER { get; set; }
     }
 
-    //    public class TotalDaily
-    //    {
-    //        public ENERCKCAL ENERC_KCAL { get; set; }
-    //    public FAT { get; set; }
-    //public FASAT
-    //{ get; set; }
-    //public CHOCDF
-    //{ get; set; }
-    //public FIBTG
-    //{ get; set; }
-    //public PROCNT
-    //{ get; set; }
-    //public CHOLE
-    //{ get; set; }
-    //public NA
-    //{ get; set; }
-    //public CA
-    //{ get; set; }
-    //public MG
-    //{ get; set; }
-    //public K
-    //{ get; set; }
-    //public FE
-    //{ get; set; }
-    //public ZN
-    //{ get; set; }
-    //public P
-    //{ get; set; }
-    //public VITA_RAE
-    //{ get; set; }
-    //public VITC
-    //{ get; set; }
-    //public THIA
-    //{ get; set; }
-    //public RIBF
-    //{ get; set; }
-    //public NIA
-    //{ get; set; }
-    //public VITB6A
-    //{ get; set; }
-    //public FOLDFE
-    //{ get; set; }
-    //public VITB12
-    //{ get; set; }
-    //public VITD
-    //{ get; set; }
-    //public TOCPHA
-    //{ get; set; }
-    //public VITK1
-    //{ get; set; }
-    //    }
-
     public class Sub
     {
         public string label { get; set; }
@@ -364,15 +312,12 @@ namespace EdamanService.Models
         public double totalWeight { get; set; }
         public double totalTime { get; set; }
         public TotalNutrients totalNutrients { get; set; }
-        //public TotalDaily totalDaily { get; set; }
         public IList<Digest> digest { get; set; }
     }
 
     public class Hit
     {
         public Recipe recipe { get; set; }
-        public bool bookmarked { get; set; }
-        public bool bought { get; set; }
     }
 
     public class RecipeResponse

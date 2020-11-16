@@ -1,30 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="ThisPage"
              x:Class="FoodApp.Pages.SearchRecipiesPage">
     <ContentPage.Content>
         <StackLayout Margin="10">
             <SearchBar Placeholder="Search recipe..."
                        SearchCommand="{Binding SearchRecipiesCommand}"
-                       SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"/>
+                       SearchCommandParameter="{Binding Source={RelativeSource Self}, Path=Text}"
+                       Opacity="0.9"/>
 
             <CollectionView ItemsSource="{Binding Recipies}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
                             <Frame CornerRadius="5" BorderColor="Black" Margin="0,5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference ThisPage}, Path=BindingContext.GetRecipeDetailCommand}"
+                                                          CommandParameter="{Binding recipe}"/>
+                                </Frame.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
 
                                     <Label Text="{Binding recipe.label}"
-                                           Grid.ColumnSpan="2"
+                                           Grid.Column="1"
                                            FontAttributes="Bold,Italic"
                                            FontSize="18"
                                            HorizontalTextAlignment="End"
@@ -42,7 +48,6 @@
                                         <Label Text="{Binding recipe.totalWeight, StringFormat='Weight: {0:f} g'}"/>
                                         <Label Text="{Binding recipe.totalTime, StringFormat='Total time: {0} minutes'}"/>
                                     </StackLayout>
-
                                 </Grid>
                             </Frame>
                         </StackLayout>
