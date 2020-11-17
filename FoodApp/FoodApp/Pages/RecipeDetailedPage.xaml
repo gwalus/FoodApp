@@ -3,58 +3,79 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodApp.Pages.RecipeDetailedPage"
              x:Name="ThisPage"
+             xmlns:converters="clr-namespace:FoodApp.Converters"
              BackgroundColor="{StaticResource mainAppColor}">
-    
-        <Frame Margin="15" CornerRadius="5" BorderColor="Black">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    
-                </Grid.RowDefinitions>
 
-                <Label Text="{Binding Recipe.label}"
+    <Frame Margin="15" CornerRadius="5" BorderColor="Black">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Text="{Binding Recipe.label}"
                        FontAttributes="Bold,Italic"
                        HorizontalOptions="Center"
                        FontSize="Title"
                        Margin="0,0,0,5"/>
 
-                <Image Grid.Row="1" Source="{Binding Recipe.image}"
+            <Image Grid.Row="1" Source="{Binding Recipe.image}"
                        Margin="0,0,0,5"/>
 
-                <ListView Grid.Row="2" 
+            <CollectionView Grid.Row="2"
+                    VerticalScrollBarVisibility="Never"
                           ItemsSource="{Binding Recipe.ingredients}" 
-                          SeparatorVisibility="Default"
-                          SelectionMode="None">
-                    <ListView.Header>
-                        <Label Text="Components:" 
+                          SelectionMode="None"
+                                HeightRequest="{Binding ComponentsHeight}">
+                <CollectionView.Header>
+                    <Label Text="Components:" 
                                FontAttributes="Bold,Italic" 
                                HorizontalOptions="StartAndExpand"
+                               VerticalTextAlignment="Center"
                                FontSize="16"
                                Margin="0,0,0,5"/>
-                    </ListView.Header>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                        <!--<TextCell Text="{Binding text, StringFormat='■ {0}'}"/>-->
-                        
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding text, StringFormat='■ {0}'}" HeightRequest="20"/>
                     </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
+            <Grid Grid.Row="3" BindingContext="{Binding Recipe.totalNutrients}"
+                      ColumnSpacing="10"
+                      RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-                <!--<StackLayout Grid.Row="3" BindingContext="{Binding Recipe.totalNutrients.ENERC_KCAL}">
-                    <Label Text="{Binding label}"/>
-                    <Label Text="{Binding quantity}"/>
-                    <Label Text="{Binding unit}"/>
-                    -->
-                <!--<Label Text="{Binding FAT.label}"/>
-                                <Label Text="{Binding PROCNT.label}"/>
-                                <Label Text="{Binding FIBTG.label}"/>-->
-                <!--
-                </StackLayout>-->
-
+                <Label Grid.Row="0" Grid.Column="0" Text="{Binding ENERC_KCAL.label}"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding ENERC_KCAL.quantity, StringFormat='{0:F2}'}"/>
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding ENERC_KCAL.unit}"/>
+                <Label Grid.Row="1" Grid.Column="0" Text="{Binding PROCNT.label}"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding PROCNT.quantity, StringFormat='{0:F2}'}"/>
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding PROCNT.unit}"/>
+                <Label Grid.Row="2" Grid.Column="0" Text="{Binding FAT.label}"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding FAT.quantity, StringFormat='{0:F2}'}"/>
+                <Label Grid.Row="2" Grid.Column="2" Text="{Binding FAT.unit}"/>
+                <Label Grid.Row="3" Grid.Column="0" Text="{Binding FIBTG.label}"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding FIBTG.quantity, StringFormat='{0:F2}'}"/>
+                <Label Grid.Row="3" Grid.Column="2" Text="{Binding FIBTG.unit}"/>
+                <Label Grid.Row="4" Grid.Column="0" Text="{Binding CHOCDF.label}"/>
+                <Label Grid.Row="4" Grid.Column="1" Text="{Binding CHOCDF.quantity, StringFormat='{0:F2}'}"/>
+                <Label Grid.Row="4" Grid.Column="2" Text="{Binding CHOCDF.unit}"/>
             </Grid>
-        </Frame>
-    
+        </Grid>
+    </Frame>
 </ContentPage>

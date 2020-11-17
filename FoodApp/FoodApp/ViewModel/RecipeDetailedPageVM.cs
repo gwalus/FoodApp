@@ -47,15 +47,12 @@ namespace FoodApp.ViewModel
         public RecipeDetailedPageVM(Recipe recipe)
         {
             Recipe = recipe;
-            
-            //ComponentsHeight = SetHeight(recipe.ingredientLines.Count);
-
-            Height = (Recipe.ingredients.Count * 20) + (Recipe.ingredients.Count * 10);
+            ComponentsHeight = SetHeight(Recipe.ingredients.Count);
         }
 
         private int SetHeight(int count)
         {
-            return count * 25;
+            return count * 20 + 30;
         }
 
         private void OnPropertyChanged(string memberName)
