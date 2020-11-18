@@ -32,6 +32,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.4" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.10" />
     <PackageReference Include="Unity" Version="5.11.7" />
+    <PackageReference Include="VG.XFShapeView" Version="1.0.5" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>

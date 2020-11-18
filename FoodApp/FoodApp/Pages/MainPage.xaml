@@ -7,6 +7,7 @@
              BackgroundColor="{StaticResource mainAppColor}"
             SelectedTabColor="Black"
             NavigationPage.HasBackButton="False"
+            NavigationPage.HasNavigationBar="False"
             BarBackgroundColor="{StaticResource mainAppColor}"
             android:TabbedPage.IsSmoothScrollEnabled="True">
     <TabbedPage.ToolbarItems>

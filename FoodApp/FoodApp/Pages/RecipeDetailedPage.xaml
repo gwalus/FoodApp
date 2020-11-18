@@ -3,28 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodApp.Pages.RecipeDetailedPage"
              x:Name="ThisPage"
-             xmlns:converters="clr-namespace:FoodApp.Converters"
+             xmlns:shapes="clr-namespace:XFShapeView;assembly=XFShapeView"
              BackgroundColor="{StaticResource mainAppColor}">
 
+    <ScrollView Padding="0,0,0,10" VerticalScrollBarVisibility="Never">
     <Frame Margin="15" CornerRadius="5" BorderColor="Black">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Label Text="{Binding Recipe.label}"
-                       FontAttributes="Bold,Italic"
-                       HorizontalOptions="Center"
-                       FontSize="Title"
-                       Margin="0,0,0,5"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="1" Source="{Binding Recipe.image}"
+            <Label Text="{Binding Recipe.label}"
+                   FontAttributes="Bold,Italic"
+                   HorizontalOptions="Center"
+                   FontSize="Title"
+                   Margin="0,0,0,5"/>
+
+                <shapes:ShapeView Grid.Column="1"
+                    ShapeType="Star" 
+                              Color="{Binding IsFavourite}"
+                              BorderColor="Black"
+                              BorderWidth="1"
+                              HorizontalOptions="End"
+                                  VerticalOptions="Center"
+                              WidthRequest="25"
+                              HeightRequest="25">
+                    <shapes:ShapeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddToFavouritesCommand}"/>
+                    </shapes:ShapeView.GestureRecognizers>
+                </shapes:ShapeView>
+
+                <Image Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding Recipe.image}"
                        Margin="0,0,0,5"/>
 
             <CollectionView Grid.Row="2"
+                            Grid.ColumnSpan="2"
                     VerticalScrollBarVisibility="Never"
                           ItemsSource="{Binding Recipe.ingredients}" 
                           SelectionMode="None"
@@ -44,7 +65,9 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Grid Grid.Row="3" BindingContext="{Binding Recipe.totalNutrients}"
+            <Grid Grid.Row="3"
+                  Grid.ColumnSpan="2"
+                  BindingContext="{Binding Recipe.totalNutrients}"
                       ColumnSpacing="10"
                       RowSpacing="5">
                 <Grid.RowDefinitions>
@@ -78,4 +101,5 @@
             </Grid>
         </Grid>
     </Frame>
+    </ScrollView>
 </ContentPage>

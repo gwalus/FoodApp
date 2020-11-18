@@ -4,10 +4,16 @@
              x:Class="FoodApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="mainAppColor">#75a3a3</Color>
+            <!--<Color x:Key="mainAppColor">#75a3a3</Color>
             <Color x:Key="buttonsColor">#527a7a</Color>
-            <Color x:Key="NavigationBarColor">#3d5c5c</Color>
+            <Color x:Key="NavigationBarColor">#3d5c5c</Color>-->
 
+            <Color x:Key="mainAppColor">#e69900</Color>
+            <Color x:Key="buttonsColor">#cc8800</Color>
+            <Color x:Key="NavigationBarColor">#996600</Color>
+
+            
+            
             <Style TargetType="{x:Type NavigationPage}">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationBarColor}"/>
             </Style>

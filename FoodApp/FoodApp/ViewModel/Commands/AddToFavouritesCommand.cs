@@ -3,15 +3,15 @@ using System.Windows.Input;
 
 namespace FoodApp.ViewModel.Commands
 {
-    public class SearchFoodCommand : ICommand
+    public class AddToFavouritesCommand : ICommand
     {
-        private readonly SearchFoodPageVM _viewModel;
+        private readonly RecipeDetailedPageVM _viewModel;
 
-        public SearchFoodCommand(SearchFoodPageVM viewModel)
+        public AddToFavouritesCommand(RecipeDetailedPageVM viewModel)
         {
             _viewModel = viewModel;
         }
-
+        
         public bool CanExecute(object parameter)
         {
             return true;
@@ -19,10 +19,8 @@ namespace FoodApp.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            if (parameter != null)
-                _viewModel.GetFoodInfo(parameter.ToString());
+            _viewModel.AddToFavourite();
         }
-
 #pragma warning disable 67
         public event EventHandler CanExecuteChanged;
 #pragma warning restore 67
